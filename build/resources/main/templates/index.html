@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" th:href="@{/app.css}" />
+
+	<title>Countries of the World</title>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1><a th:href="@{/countries}">Countries of the World</a></h1>
+		</div>
+	</header>
+	<div class="container">
+		<form th:action="@{/countries}" method="get">
+			<p>Order by: </p><select name="sortBy" >
+				<option value="Name">Name</option>
+				<option value="Population">Population</option>
+			</select>
+			<input type="submit" value="Sort">
+		</form>
+	</div>
+	<div class="container">
+		<div th:each="country : ${countries}" class="country">
+			<a th:href="@{'/country/' + ${country.name}}">
+				<img th:src="@{'/flags/' + ${country.name} + '.png'}" alt="Flag of India"/>
+				<h4 th:text="${country.name}">India</h4>
+			</a>
+		</div>
+	</div>
+</body>
+</html>
